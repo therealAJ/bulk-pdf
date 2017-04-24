@@ -1,14 +1,27 @@
-from urllib.request import urlopen
-import requests
 import re
 import sys
 import os
+import requests
+from urllib.request import urlopen
 
-website = urlopen(str(sys.argv[1]))
+# Our URL 
+url_link = str(sys.argv[1])
 
+website = urlopen(url_link)
+
+# Decode website into string string
 html = website.read().decode('utf-8')
 
+#Find all local and non-hosted pdfs and download 
 links = re.findall('"(https?://\S*?.pdf)"', html)
+local_links = re.findall('"([^.=]*.pdf)', html)
 
 for link in links:
-    os.system('wget ' + link)
+	command = 'wget'
+	path = str(sys.argv[2])
+	os.system("%s %s -P %s" % (command, link, path))
+
+for link in local_links:
+	command = 'wget'
+	path = str(sys.argv[2])
+	os.system("%s %s%s -P %s" % (command, url_link, link, path))
