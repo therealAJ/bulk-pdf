@@ -1,6 +1,8 @@
 <p align="center">
-  <img src="media/bull.svg"/>
+  <img src="/media/bull.png"/>
 </p>
+
+[alt-txt](https://raw.githubusercontent.com/therealAJ/bulk-pdf/master/media/bull.svg)
 
 > a cli for downloading hosted pdf's (for lazy people like me)
 
