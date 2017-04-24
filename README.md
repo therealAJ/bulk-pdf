@@ -1,10 +1,15 @@
 <p align="center">
   <img src="/media/bull.png"/>
+  <br>
+  <br>
+  <b>Bulk PDF downloader</b>
+  <br>
+  <i>* will only work for un-hosted PDF's *</i>
 </p>
 
-[alt-txt](https://raw.githubusercontent.com/therealAJ/bulk-pdf/master/media/bull.svg)
 
-> a cli for downloading hosted pdf's (for lazy people like me)
+
+> a cli for downloading external pdf's (for lazy people like me)
 
 <br>
 
