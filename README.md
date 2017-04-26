@@ -14,6 +14,10 @@
 
 <br>
 
+## Motivation
+One day I was downloading what felt like millions of PDF packages of CS notes. A couple minutes in, I got really tired of right clicking `Save Link As`. So I decided to build this :)   
+
+
 ## Requirements 
 
 `urllib`
