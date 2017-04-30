@@ -4,7 +4,7 @@
   <br>
   <b>Bulk PDF downloader</b>
   <br>
-  <i>* will only work for local and non-hosted PDF's *</i>
+  <i>* will with work for local and non-hosted PDF's *</i>
   
   <a><img src="https://img.shields.io/badge/License-MIT-blue.svg"></a>
   <a><img src="https://img.shields.io/badge/python-3.5%2C%203.6-39CCCC.svg"></a>
@@ -22,8 +22,10 @@
 One day I was downloading what felt like millions of PDF packages of CS notes. A couple minutes in, I got really tired of right clicking `Save Link As`. So I decided to build this :)   
 
 
-## Requirements 
+## Requirements
 
+`argparse`
+<br>
 `urllib`
 <br>
 `requests`
@@ -43,7 +45,7 @@ $ pip install -r reqs.txt
 ## Usage
 
 ```sh
-$ python pdf.py <URL-CONTAINING-DESIRED-PDFS> <dest/which/you/want/to/download/to>
+$ python pdf.py <URL-CONTAINING-DESIRED-PDFS> <dest/which/you/want/to/download/to> [OPTIONAL-BASE-URL-FOR-HOSTED-PDFS]
 ```
 
 Downloads discovered PDFs to specified `path`.
