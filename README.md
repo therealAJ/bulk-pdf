@@ -57,3 +57,9 @@ For example:
 ```sh
 $ python pdf.py https://www.cs.ubc.ca/~schmidtm/Courses/340-F16/ ~/Desktop/Lectures
 # downloads all PDFs to your `~/Desktop/Lectures` folder
+```
+
+Webpages have different ways of hosting PDFs, some use an absolute url, like `https://hosting-site.com/hello.pdf`, others host locally and have `href` tags looking something like `\courses\cs101\hello.pdf`. The second case is the reason I added the ability to give the optional url for the parent hosting site. 
+<br>
+You may run into a url that looks like `https://site.com/lectures.html`. More often than not, this is where you want to use the full url to parse the entire webpage and then use `https://site.com` as the optional parameter to do the `wget` requests with. Hopefully I haven't confused you :) File an issue if you run into anything of interest. PRs welcome :) 
+
