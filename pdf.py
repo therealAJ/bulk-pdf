@@ -1,10 +1,9 @@
 import re
-import sys
 import os
-import requests
 import argparse
-import ssl
+from bs4 import BeautifulSoup
 from urllib.request import urlopen
+import ssl
 
 '''
 argparse to enable finicky command-line args
@@ -15,7 +14,7 @@ parser.add_argument('file_path')
 parser.add_argument('relative_url', nargs='?', default='none')
 args = parser.parse_args()
 
-# HTML Parse URL 
+# HTML Parse URL
 url_link = str(args.website_url)
 # wget URL
 wget_link = str(args.relative_url)
@@ -26,25 +25,29 @@ ctx = ssl.create_default_context()
 ctx.check_hostname = False
 ctx.verify_mode = ssl.CERT_NONE
 
-website = urlopen(url_link,context=ctx)
+website = urlopen(url_link, context=ctx)
 
 # Decode website into string string
-html = website.read().decode('utf-8')
+soup = BeautifulSoup(website.read(), features="html.parser")
+links = []
+local_links = []
+divs = soup.find_all('a', attrs={'href': re.compile(".pdf$")})
+for div in divs:
+    href = div.get('href')
+    if href.find("http") == -1:
+        local_links.append(href)
+    else:
+        links.append(href)
 
-#Find all local and non-hosted pdfs and download 
-links = re.findall('"(https?://\S*?.pdf)"', html)
-local_links = re.findall('"([^.\"=]*.pdf)', html)
-
-#Download non-hosted PDFs
+# Download non-hosted PDFs
 for link in links:
-	command = 'wget'
-	os.system("%s %s -P %s" % (command, link, sys_path))
+    command = 'wget'
+    os.system("%s %s -P %s" % (command, link, sys_path))
 
-#Download local/hosted PDFs
+# Download local/hosted PDFs
 for link in local_links:
-	command = 'wget'
-	if(wget_link == 'none'):
-		os.system("%s %s/%s -P %s" % (command, url_link, link, sys_path))
-	else:
-		os.system("%s %s/%s -P %s" % (command, wget_link, link, sys_path))
-		
+    command = 'wget'
+    if(wget_link == 'none'):
+        os.system("%s '%s/%s' -P %s" % (command, url_link, link, sys_path))
+    else:
+        os.system("%s '%s/%s' -P %s" % (command, wget_link, link, sys_path))
