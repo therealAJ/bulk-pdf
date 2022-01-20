@@ -3,6 +3,7 @@ import sys
 import os
 import requests
 import argparse
+import ssl
 from urllib.request import urlopen
 
 '''
@@ -21,7 +22,11 @@ wget_link = str(args.relative_url)
 # system path
 sys_path = str(args.file_path)
 
-website = urlopen(url_link)
+ctx = ssl.create_default_context()
+ctx.check_hostname = False
+ctx.verify_mode = ssl.CERT_NONE
+
+website = urlopen(url_link,context=ctx)
 
 # Decode website into string string
 html = website.read().decode('utf-8')
